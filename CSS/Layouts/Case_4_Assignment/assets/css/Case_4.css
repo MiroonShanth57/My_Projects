@@ -1,0 +1,9 @@
+main>section>div:nth-child(1){
+    border: 2px solid black;
+    height: 50px;
+}
+
+main>section>div:nth-child(2){
+    border: 2px solid black;
+    height: 50px;
+}

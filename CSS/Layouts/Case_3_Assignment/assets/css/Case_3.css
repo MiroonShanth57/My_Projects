@@ -25,3 +25,36 @@ section > div {
 
 
 }
+
+/*3*/
+body>section:nth-child(3)>div{
+    background-color: rgb(0, 255, 25);
+}
+
+body > section:nth-child(1) > div {
+    background-color: rgb(0, 85, 255);
+}
+
+body > section:nth-child(2) > div {
+    background-color: rgb(177, 144, 26);
+}
+
+/*4*/
+section > div > p {
+    position: relative;
+
+    top: 45%;
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+    font-size: 45px;
+    font-family: "Tw Cen MT";
+    color: white;
+    font-weight: bold;
+
+}
+
+

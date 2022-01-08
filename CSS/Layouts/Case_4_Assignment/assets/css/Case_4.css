@@ -7,3 +7,25 @@ main>section>div:nth-child(2){
     border: 2px solid black;
     height: 50px;
 }
+
+/*1*/
+body>main>section{
+    height: 500px;
+}
+
+/*2*/
+body>main>section:nth-child(1){
+    background-color: #c37dde;
+}
+
+body>main>section:nth-child(2){
+    background-color: #6254ad;
+}
+
+body>main>section:nth-child(3){
+    background-color: #6bc476;
+}
+
+body>main>section:nth-child(4){
+    background-color: #a89859;
+}

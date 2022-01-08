@@ -1,0 +1,20 @@
+body>main{
+    border: 2px solid red;
+    height: 500px;
+    width: 500px;
+}
+
+body>main>section{
+    border: 2px solid #044cdc;
+    height: 300px;
+    width: 300px;
+    position: relative;
+}
+
+body>main>section>div{
+    border: 2px solid #181818;
+    height: 200px;
+    width: 200px;
+
+    position: absolute;
+}

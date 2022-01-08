@@ -12,7 +12,6 @@ section > div {
     height: 325px;
 
     border-radius: 100%;
-    border: 2px solid black;
 
     position: absolute;
     bottom: 0;
@@ -29,21 +28,27 @@ section > div {
 /*3*/
 body>section:nth-child(3)>div{
     top: 3%;
-    background-color: rgb(0, 255, 25);
+    background-color: rgb(206, 57, 57);
 }
 
 body > section:nth-child(1) > div {
     bottom: 2%;
-    background-color: rgb(0, 85, 255);
+    background-color: rgb(164, 65, 198);
 }
 
 body > section:nth-child(2) > div {
     bottom: 40%;
 
-    background-color: rgb(177, 144, 26);
+    background-color: rgb(10, 100, 144);
 }
 
 /*4*/
+
+section > div > p:nth-child(3) {
+    border: 0;
+    top: 60%;
+}
+
 section > div > p {
     position: relative;
 
@@ -54,14 +59,16 @@ section > div > p {
     left: 0;
     margin: auto;
 
-    font-size: 45px;
-    font-family: "Tw Cen MT";
+    font-size: 30px;
+    font-family: "Franklin Gothic Demi";
     color: white;
     font-weight: bold;
 
 }
 
-/*5*/
+
+
+    /*5*/
 
 body > div:nth-of-type(1) {
     width: 330px;

@@ -1,20 +1,80 @@
 body>main{
-    border: 2px solid red;
+
     height: 500px;
     width: 500px;
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+
+    overflow: hidden;
+
+     border: 5px solid #000000;
+
+
 }
 
 body>main>section{
-    border: 2px solid #044cdc;
-    height: 300px;
-    width: 300px;
-    position: relative;
+
+    height: 100%;
+    width: 400%;
+    /*position: relative;*/
+
+    display: flex;
+
+    animation-name: firstMove;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }
 
 body>main>section>div{
-    border: 2px solid #181818;
-    height: 200px;
-    width: 200px;
 
-    position: absolute;
+    width: 100%;
+
+}
+
+body>main>section>div:nth-child(1){
+    background: url("../img/4.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+body>main>section>div:nth-child(2){
+    background: url("../img/2.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+body>main>section>div:nth-child(3){
+    background: url("../img/1.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+body>main>section>div:nth-child(4){
+    background: url("../img/3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes firstMove {
+    0%,24%{
+        transform: translateX(0%);
+    }25%,49%{
+             transform: translateX(-25%);
+         }50%,74%{
+             transform: translateX(-50%);
+            }75%,99%{
+               transform: translateX(-75%);
+                }100%{
+                 /*transform: translateX(-100%);*/
+                 }
+
+}
+
+body{
+    background-color: #c6e2e3;
 }

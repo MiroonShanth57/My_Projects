@@ -1,0 +1,36 @@
+
+body>section{
+    height: 300px;
+    width: 300px;
+
+    border: 17px solid blue;
+    border-radius: 100%;
+
+    border-top: 17px solid red;
+
+
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background-color: #ce5050;
+}
+
+body>section>h1{
+    position: absolute;
+
+    font-size: 100px;
+    /*text-align: center;*/
+    width: max-content;
+    height: max-content;
+
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+

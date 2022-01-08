@@ -8,8 +8,8 @@ body>section{
 /*2*/
 
 section > div {
-    width: 400px;
-    height: 400px;
+    width: 325px;
+    height: 325px;
 
     border-radius: 100%;
     border: 2px solid black;
@@ -28,14 +28,18 @@ section > div {
 
 /*3*/
 body>section:nth-child(3)>div{
+    top: 3%;
     background-color: rgb(0, 255, 25);
 }
 
 body > section:nth-child(1) > div {
+    bottom: 2%;
     background-color: rgb(0, 85, 255);
 }
 
 body > section:nth-child(2) > div {
+    bottom: 40%;
+
     background-color: rgb(177, 144, 26);
 }
 
@@ -56,5 +60,41 @@ section > div > p {
     font-weight: bold;
 
 }
+
+/*5*/
+
+body > div:nth-of-type(1) {
+    width: 330px;
+    height: 330px;
+    border-radius: 100%;
+
+    border: 25px solid #95a5a6;
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+
+}
+
+body > div:nth-of-type(2) {
+    width: 375px;
+    height: 375px;
+    border-radius: 100%;
+
+    border: 25px solid red;
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+}
+
 
 

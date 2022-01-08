@@ -1,0 +1,156 @@
+header{
+    height: 50px;
+    position: relative;
+
+    box-shadow: 0px 5px 0px -2px;
+
+}
+
+header>img{
+    height:40px;
+    width:160px;
+}
+
+header>ul{
+    position: absolute;
+    right: 50px;
+    bottom: 0;
+    top: 0;
+
+    height: 20px;
+    margin: auto;
+    list-style: none;
+
+
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+}
+
+header>ul>li{
+    display: inline-block;
+
+    padding: 0 10px 0 10px;
+}
+
+header>ul>li:hover{
+    cursor: pointer;
+    color: red;
+    font-size: 19px;
+}
+main{
+    position: relative;
+}
+
+main>nav{
+    position: absolute;
+    background-color: purple;
+
+    list-style: none;
+    border-color: red;
+
+    top: 0;
+    bottom: 0;
+
+    width: 180px;
+    color: white;
+}
+
+main>nav>ul{
+    list-style: none;
+}
+main>nav>ul>li{
+    font-size: 18px;
+    padding-bottom: 30px;
+    list-style: none;
+
+    font-family: 'Vollkorn', serif;
+}
+
+main>section{
+    position: relative;
+    margin-left: 180px;
+    padding: 10px;
+}
+
+main>nav>ul>li>a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+
+
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
+}
+
+main>nav>ul>li>a:hover{
+    border-radius: 7px;
+    border-bottom: 2px solid #d70000;
+    border-top: 2px solid #d70000;
+    padding-bottom: 5px;
+
+    color: #d70000;
+    font-size: 19px;
+
+}
+
+main>nav>ul>li>i{
+    color: white;
+    margin-right: 8px;
+
+}
+
+main>nav>ul>li>i:hover{
+    color: #d70000;
+    margin-right: 8px;
+
+}
+
+
+main >section>section{
+    height: 250px;
+
+    position: relative;
+
+}
+
+main >section>section>div{
+    position: absolute;
+
+    height: 100%;
+    width: calc(100%/ 3);
+
+
+}
+
+main>section>section>div:nth-child(1){
+    left: 0;
+    background-image: url(../Images/4.jpeg);
+    background-size: cover;
+    border-left: 5px solid white;
+}
+main>section>section>div:nth-child(2){
+    left: calc(100%/ 3);
+    background-image: url(../Images/2.jpeg);
+    background-size: cover;
+    border-left: 5px solid white;
+}
+main>section>section>div:nth-child(3){
+    left: calc((100%/ 3)*2);
+    background-image: url(../Images/3.jpeg);
+    background-size: cover;
+    border-left: 5px solid white;
+
+}
+
+body>footer{
+    height: 50px;
+    background-color: #c37dde;
+}
+
+body>footer>p{
+    margin-top: 0;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-family: "Book Antiqua";
+}

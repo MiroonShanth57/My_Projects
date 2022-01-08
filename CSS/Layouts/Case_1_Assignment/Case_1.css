@@ -1,0 +1,154 @@
+
+body > section{
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    z-index: 1;
+}
+
+
+body>section:nth-child(1){
+    background-color: red;
+    left: 0;
+    top: 0;
+}
+body>section:nth-child(2){
+    background-color: green;
+    right: 0;
+    top: 0;
+}
+body>section:nth-child(3){
+    background-color: orange;
+    bottom: 0;
+    left: 0;
+}
+body>section:nth-child(4){
+    background-color: #f16386;
+    bottom: 0;
+    right: 0;
+}
+
+body>div{
+
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    position: absolute;
+    background-color: white;
+}
+
+
+body>div:nth-child(5){
+    top: 0;
+    left: 0;
+    border-bottom-right-radius: 254px;
+
+}
+body>div:nth-child(6){
+    right: 0;
+    top: 0;
+    border-bottom-left-radius: 254px;
+}
+body>div:nth-child(7){
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 254px;
+}
+body>div:nth-child(8){
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 254px;
+}
+
+body>div:nth-child(9){
+
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+div>div{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+body>div:nth-child(10){
+    top: 0;
+    left:0;
+    right: 0;
+    margin:auto;
+
+    border-bottom-left-radius: 153px;
+    border-bottom-right-radius: 153px;
+
+    width :234px;
+    height: 117px;
+
+
+
+}
+
+body>div:nth-child(11){
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin:auto;
+
+    border-top-left-radius: 153px;
+    border-top-right-radius: 153px;
+
+    width :234px;
+    height: 117px;
+}
+
+body>section>div{
+    background-color: white;
+
+    width :163px;
+    height: 163px;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    margin: auto;
+
+    position: absolute;
+
+    border-radius: 100%;
+
+}
+
+body>section>div>div{
+    background-color: red;
+
+    width :60px;
+    height: 60px;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    margin: auto;
+    border-radius: 0;
+
+
+
+
+}
+

@@ -3,10 +3,10 @@ body>section{
     height: 300px;
     width: 300px;
 
-    border: 17px solid blue;
+    border: 17px solid #261111;
     border-radius: 100%;
 
-    border-top: 17px solid red;
+    border-top: 17px solid #f30202;
 
 
     position: absolute;
@@ -16,7 +16,7 @@ body>section{
     top: 0;
     bottom: 0;
 
-    background-color: #ce5050;
+    background-color: #778be2;
 }
 
 body>section>h1{
@@ -32,5 +32,24 @@ body>section>h1{
     top: 0;
     bottom: 0;
     margin: auto;
+
+    color: #0447ff;
+    font-family: "Gloucester MT Extra Condensed";
+}
+
+body>section:hover h1{
+    transform: rotate(-360deg);
+    transition: all 3s;
+}
+
+body>section:hover{
+    cursor: pointer;
+
+    transform: rotate(360deg);
+    transition: all 3s;
+}
+
+body{
+    background-color: #e89c9c;
 }
 

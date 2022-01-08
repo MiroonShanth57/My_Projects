@@ -1,0 +1,33 @@
+body>section{
+    border: 2px solid blue;
+
+    width: 200px;
+    height: 400px;
+    top: 100px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-evenly;
+
+
+}
+
+body>section>div{
+    height: 40px ;
+    border: 2px solid green;
+    position: relative;
+}
+
+body>section>div>h3{
+    margin: 0;
+    display: inline-block;
+}
+
+body>section>div>i{
+    right: 0;
+    position: absolute;
+    top: 10px;
+}

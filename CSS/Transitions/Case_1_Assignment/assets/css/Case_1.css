@@ -1,33 +1,52 @@
 body>section{
-    border: 2px solid blue;
 
     width: 200px;
     height: 400px;
     top: 100px;
-
     position: relative;
-
     display: flex;
     flex-direction: column;
-
     justify-content: space-evenly;
-
-
+    right: 163px;
 }
 
 body>section>div{
+    left: 0;
     height: 40px ;
-    border: 2px solid green;
+    /*border: 2px solid green;*/
     position: relative;
+
+    background-color: #e209e2;
+    box-shadow: 1px 8px 6px 0px blue;
+
+    transition-duration:1s;
+
 }
 
 body>section>div>h3{
     margin: 0;
     display: inline-block;
+
+    padding: 10px;
+
 }
 
 body>section>div>i{
-    right: 0;
+    right: 10px;
+
     position: absolute;
     top: 10px;
+
+    font-size: 25px;
+    color: white;
+}
+
+/*trn*/
+
+body>section>div:hover{
+    /*background: #ffffff;*/
+    left: 150px;
+
+    transition-property: all;
+    transition-duration:1s;
 }

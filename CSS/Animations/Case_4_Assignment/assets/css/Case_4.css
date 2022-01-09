@@ -1,0 +1,73 @@
+body>main>section{
+    height: 200px;
+    position: relative;
+}
+
+body>main{
+    background-size: cover;
+    background-image: url("../image/sky.jpg");
+}
+
+body>main>section:nth-child(2){
+    background-image: url("../image/city.png");
+}
+
+body>main>section:nth-child(3){
+    background-image: url("../image/road.jpg");
+}
+
+body>main>section>div{
+    width: 478px;
+    height: 200px;
+
+    margin: auto;
+
+    left: 0;
+    right: 0;
+    top: -90px;
+
+    /*background-color: #1277e7;*/
+    background-image: url("../image/car.png");
+    background-position: center;
+    position: absolute;
+    background-size: cover;
+}
+
+body>main>section>div>div{
+    width: 86px;
+    height: 86px;
+
+
+
+    /*background-color: #1277e7;*/
+    background-image: url("../image/wheel.png");
+    background-position: center;
+    position: absolute;
+    background-size: cover;
+    top: 106px;
+}
+
+body>main>section>div>div:nth-child(1){
+    margin: auto;
+
+    left: 279px;
+    right: 0;
+
+}
+
+body>main>section>div>div:nth-child(2){
+    margin: auto;
+
+    left: 0;
+    right: 310px;
+
+}
+body{
+    position: relative;
+
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+

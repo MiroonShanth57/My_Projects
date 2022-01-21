@@ -1,0 +1,43 @@
+.bg-dark{
+    background-color: #324DAD !important;
+}
+
+.navbar-toggler-icon {
+    width: 0.7em;
+    height: 0.7em;
+}
+
+.navbar-brand{
+    font-family: monospace;
+    font-weight: bold;
+    font-size:28px;
+    color: #ffffff !important;
+}
+
+.nav-link active{
+    font-family: monospace;
+}
+
+.nav-link{
+    font-family: monospace;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-item{
+    margin: 0 10px ;
+}
+
+.nav-item{
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    transition: box-shadow .5s cubic-bezier(0.39, 0.58, 0.57, 1);
+
+}

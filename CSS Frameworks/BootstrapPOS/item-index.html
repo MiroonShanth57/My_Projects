@@ -120,6 +120,34 @@
   </div>
 </main>
 
+
+
+
+
+<script>
+  document.getElementById("ManageItemPage").style.display="none";
+  document.getElementById("PlaceOrderPage").style.display="none";
+  //First Btn Func
+  document.getElementById("HomeBtn").addEventListener("click",function () {
+    document.getElementById("ManageItemPage").style.display="none";
+    document.getElementById("PlaceOrderPage").style.display="none";
+    document.getElementById("ManageCustomePage").style.display="block";
+  });
+  //Sec Btn Func
+  document.getElementById("ItemsBtn").addEventListener("click",function () {
+    document.getElementById("ManageItemPage").style.display="block";
+    document.getElementById("PlaceOrderPage").style.display="none";
+    document.getElementById("ManageCustomePage").style.display="none";
+  });
+  //Third Btn Func
+  document.getElementById("OrdersBtn").addEventListener("click",function () {
+    document.getElementById("ManageItemPage").style.display="none";
+    document.getElementById("PlaceOrderPage").style.display="block";
+    document.getElementById("ManageCustomePage").style.display="none";
+  });
+</script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

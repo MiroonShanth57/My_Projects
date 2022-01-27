@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MShanth POS System</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="assets/pos.css" rel="stylesheet">
+
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<body>
+<header class="position-relative">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary position-sticky">
+        <div class="container">
+            <a class="navbar-brand" href="#">MShanth POS System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="HomeBtn">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="ItemBtn">Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="OrderBtn">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Order Details</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Account</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section id="CustomerPage">
+    <div class="container">
+        <div class="row">
+            <h3 class="mt-4">Customer Details</h3>
+            <p>You can manage here customer details</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table caption-top table-hover">
+                    <caption>All Customer List</caption>
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Salary</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>C-0001</td>
+                        <td>Ram</td>
+                        <td>Colombo</td>
+                        <td>10000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>C-0002</td>
+                        <td>Ravi</td>
+                        <td>Kandy</td>
+                        <td>20000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>C-0003</td>
+                        <td>Kumar</td>
+                        <td>Panadhura</td>
+                        <td>30000</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md">
+                <form class="d-flex m-5">
+                    <input class="form-control me-2" type="search" placeholder="Search (ID/Name)" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row my-5">
+
+            <div class="col-md-12">
+                <div class="p-2 d-grid gap-2 top-50 start-50">
+                    <input class="form-control" type="text" placeholder="Customer ID" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Customer Name" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Customer Address" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Customer Salary" aria-label="default input example">
+                    <button type="button" class="btn btn-primary btn-sm">Add Customer</button>
+                    <button type="button" class="btn btn-secondary btn-sm">Update Customer</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="ItemPage">
+
+    <div class="container">
+        <div class="row">
+            <h3 class="mt-4">Item Page</h3>
+            <p>You can manage here Item details</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table caption-top table-hover">
+                    <caption>All Item List</caption>
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>I-0001</td>
+                        <td>fogg</td>
+                        <td>10</td>
+                        <td>100.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>I-0001</td>
+                        <td>fogg</td>
+                        <td>10</td>
+                        <td>100.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>I-0001</td>
+                        <td>fogg</td>
+                        <td>10</td>
+                        <td>100.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md">
+                <form class="d-flex m-5">
+                    <input class="form-control me-2" type="search" placeholder="Search (Code/Name)" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-10 position-relative">
+                <div class="p-2 d-grid gap-2 position-absolute top-50 start-50">
+                    <input class="form-control" type="text" placeholder="Item Code" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Item Name" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Item Quantity" aria-label="default input example">
+                    <input class="form-control" type="text" placeholder="Item Price" aria-label="default input example">
+                    <button type="button" class="btn btn-primary btn-sm">Add Item</button>
+                    <button type="button" class="btn btn-secondary btn-sm">Update Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="OrderPage">
+
+    <div class="container">
+        <div class="row">
+            <h2 class="mt-2">Invoice</h2>
+            <p>You can make here the customer invoice</p>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-md">
+                <h5>Customer & Item Details</h5>
+            </div>
+            <div class="col-md-9 d-flex flex-row bd-highlight mb-3 justify-content-between gap-2 ">
+                <input class="form-control form-control-sm" type="text" placeholder="Customer ID" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Address" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Salary" aria-label=".form-control-sm example">
+                <button type="button" class="btn btn-success btn-sm">Done</button>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-md p-2 d-grid gap-2">
+                <input class="form-control form-control-sm" type="text" placeholder="Item Code" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Quantity On Hand" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Price" aria-label=".form-control-sm example">
+                <input class="form-control form-control-sm" type="text" placeholder="Quantity for sale" aria-label=".form-control-sm example">
+                <button type="button" class="btn btn-success btn-sm">Add to Card..</button>
+            </div>
+
+            <div class="col-md-7">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Order Time & Date</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="00.00.00 am/pm  00/00/00">
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Order ID</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="O-0001">
+                </div>
+
+                <table class="table table-sm table-hover table-responsive caption-top">
+                    <caption>Customer Card</caption>
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>I-001</td>
+                        <td>fogg</td>
+                        <td>5</td>
+                        <td>500.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>I-001</td>
+                        <td>fogg</td>
+                        <td>5</td>
+                        <td>500.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>I-001</td>
+                        <td>fogg</td>
+                        <td>5</td>
+                        <td>500.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Total</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="000.00">
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Discount</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="30%">
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Sub Total</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="000.00">
+                </div>
+
+                <button type="button" class="btn btn-success btn-sm">Done</button>
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Cash</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput6" placeholder="000.00">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Balance</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput7" placeholder="000.00">
+                </div>
+
+                <button type="button" class="btn btn-sm btn-success">Finished</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+
+<!--    non-->
+    document.getElementById("ItemPage").style.display="none";
+    document.getElementById("OrderPage").style.display="none";
+    //------------------------------------1st btn
+    document.getElementById("HomeBtn").addEventListener("click",function () {
+        document.getElementById("ItemPage").style.display="none";
+        document.getElementById("OrderPage").style.display="none";
+        document.getElementById("CustomerPage").style.display="block";
+    });
+    //--------------------------------------2nd btn
+    document.getElementById("ItemBtn").addEventListener("click",function () {
+        document.getElementById("ItemPage").style.display="block";
+        document.getElementById("OrderPage").style.display="none";
+        document.getElementById("CustomerPage").style.display="none";
+    });
+    // -------------------------------------3rd btn
+    document.getElementById("OrderBtn").addEventListener("click",function () {
+        document.getElementById("ItemPage").style.display="none";
+        document.getElementById("OrderPage").style.display="block";
+        document.getElementById("CustomerPage").style.display="none";
+    });
+</script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -11,8 +11,11 @@
 </head>
 <body>
 
-    <h2>Mouse Event</h2>
+    <h2>Mouse Event......</h2>
 
+<!--    <h3>Hello There !</h3>-->
+
+<!--    <button id="btn1">Run</button>-->
     <script src="assets/JQuery/jquery-3.6.0.min.js"></script>
     <script>
 
@@ -23,6 +26,31 @@
             $("h2").css("left",move.pageX);
             $("h2").css("top",move.pageY);
         });
+
+
+
+
+        let heading3=$('h2').text();
+        var Position=0;
+
+        function Animate(){
+            let out =heading3.substr(0,Position);
+
+            $("h2").text(out);
+            Position++;
+
+            if(Position==heading3.length){
+                Position=0;
+            }
+        }
+
+
+
+
+          setInterval(Animate, 300);
+
+
+
     </script>
 </body>
 </html>

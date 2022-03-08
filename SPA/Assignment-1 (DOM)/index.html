@@ -60,39 +60,18 @@
 
         <div class="row">
             <div class="col-md-8">
-                <table class="table caption-top table-hover">
+                <table class="table caption-top table-hover" id="CustomerTable">
                     <caption>All Customer List</caption>
                     <thead class="table-dark">
                     <tr>
-                        <th scope="col">No</th>
                         <th scope="col">Customer ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
                         <th scope="col">Salary</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>C-0001</td>
-                        <td>Ram</td>
-                        <td>Colombo</td>
-                        <td>10000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>C-0002</td>
-                        <td>Ravi</td>
-                        <td>Kandy</td>
-                        <td>20000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>C-0003</td>
-                        <td>Kumar</td>
-                        <td>Panadhura</td>
-                        <td>30000</td>
-                    </tr>
+                    <tbody id="CustomerTableBody">
+
                     </tbody>
                 </table>
             </div>
@@ -109,12 +88,13 @@
 
             <div class="col-md-12">
                 <div class="p-2 d-grid gap-2 top-50 start-50">
-                    <input class="form-control" type="text" placeholder="Customer ID" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Customer Name" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Customer Address" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Customer Salary" aria-label="default input example">
-                    <button type="button" class="btn btn-primary btn-sm">Add Customer</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Update Customer</button>
+                    <input class="form-control" id="CusID" type="text" placeholder="Customer ID" aria-label="default input example">
+                    <input class="form-control" id="CusName" type="text" placeholder="Customer Name" aria-label="default input example">
+                    <input class="form-control" id="CusAddr" type="text" placeholder="Customer Address" aria-label="default input example">
+                    <input class="form-control" id="CusSala" type="text" placeholder="Customer Salary" aria-label="default input example">
+
+                    <button type="button"  class="btn btn-primary btn-sm" id="save">Add Customer</button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="update">Update Customer</button>
                 </div>
             </div>
         </div>
@@ -303,7 +283,7 @@
     </div>
 </section>
 
-
+<script src="assets/JQuery/jquery-3.6.0.min.js"></script>
 <script>
 
 
@@ -328,6 +308,88 @@
         document.getElementById("OrderPage").style.display="block";
         document.getElementById("CustomerPage").style.display="none";
     });
+
+// --------------------------- add customer to table -----------------------------------------
+
+
+
+    $("#save").click(function (){
+
+        $("#CustomerTableBody>tr").off("click");
+
+        // gather Cus Information
+
+        let cusID = $("#CusID").val();
+        let cusName = $("#CusName").val();
+        let cusAddress =$("#CusAddr").val();
+        let cusSalary =$("#CusSala").val();
+
+        let row = `<tr><td>${cusID}</td><td>${cusName}</td><td>${cusAddress}</td><td>${cusSalary}</td></tr>`;
+
+
+        $("#CustomerTableBody").append(row);
+
+        $("#CustomerTableBody>tr").click(function (){
+            let CusID=$(this).children(":eq(0)").text();
+            let CusName=$(this).children(":eq(1)").text();
+            let CusAddress=$(this).children(":eq(2)").text();
+            let CusSalary=$(this).children(":eq(3)").text();
+
+            $("#CusID").val(CusID);
+            $("#CusName").val(CusName);
+            $("#CusAddr").val(CusAddress);
+            $("#CusSala").val(CusSalary);
+        });
+    });
+
+//    /////////////////////////////////////////////
+
+    $("#CustomerTableBody>tr").click(function (){
+        let CusID=$(this).children(":eq(0)").text();
+        let CusName=$(this).children(":eq(1)").text();
+        let CusAddress=$(this).children(":eq(2)").text();
+        let CusSalary=$(this).children(":eq(3)").text();
+
+        $("#CusID").val(CusID);
+        $("#CusName").val(CusName);
+        $("#CusAddr").val(CusAddress);
+        $("#CusSala").val(CusSalary);
+
+    });
+
+////////////////////////////////////////////////////////////
+
+    $("#CusID").keydown(function (focusNextInput){
+
+        if(focusNextInput.key=="Enter"){
+            $("#CusName").focus();
+        }
+    });
+
+    $("#CusName").keydown(function (focusNextInput){
+
+        if(focusNextInput.key=="Enter"){
+            $("#CusAddr").focus();
+        }
+    });
+
+    $("#CusAddr").keydown(function (focusNextInput){
+
+        if(focusNextInput.key=="Enter"){
+            $("#CusSala").focus();
+        }
+    });
+
+    $("#CusSala").keydown(function (focusNextInput){
+
+        if(focusNextInput.key=="Enter"){
+           alert("Done");
+        }
+    });
+
+
+
+
 </script>
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

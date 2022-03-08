@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Assignment 2</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+
+</head>
+<body>
+
+    <h2>Mouse Event</h2>
+
+    <script src="assets/JQuery/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $("h2").css("position","relative");
+
+        $(window).on("mousemove",function (move){
+           console.log(move.pageX,move.pageY);
+            $("h2").css("left",move.pageX);
+            $("h2").css("top",move.pageY);
+        });
+    </script>
+</body>
+</html>

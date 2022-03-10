@@ -89,11 +89,19 @@
             <div class="col-md-12">
                 <div class="p-2 d-grid gap-2 top-50 start-50">
                     <input class="form-control" id="CusID" type="text" placeholder="Customer ID" aria-label="default input example">
+                    <p><small id="warning" class="text-danger"></small></p>
+
                     <input class="form-control" id="CusName" type="text" placeholder="Customer Name" aria-label="default input example">
+                    <p><small id="warning2" class="text-danger"></small></p>
+
                     <input class="form-control" id="CusAddr" type="text" placeholder="Customer Address" aria-label="default input example">
+                    <p><small id="warning3" class="text-danger"></small></p>
+
                     <input class="form-control" id="CusSala" type="text" placeholder="Customer Salary" aria-label="default input example">
+                    <p><small id="warning4" class="text-danger"></small></p>
 
                     <button type="button"  class="btn btn-primary btn-sm" id="save">Add Customer</button>
+
                     <button type="button" class="btn btn-secondary btn-sm" id="update">Update Customer</button>
                 </div>
             </div>
@@ -112,39 +120,18 @@
 
         <div class="row">
             <div class="col-md-8">
-                <table class="table caption-top table-hover">
+                <table class="table caption-top table-hover" id="ItemTable">
                     <caption>All Item List</caption>
                     <thead class="table-dark">
                     <tr>
-                        <th scope="col">No</th>
                         <th scope="col">Item Code</th>
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>I-0001</td>
-                        <td>fogg</td>
-                        <td>10</td>
-                        <td>100.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>I-0001</td>
-                        <td>fogg</td>
-                        <td>10</td>
-                        <td>100.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>I-0001</td>
-                        <td>fogg</td>
-                        <td>10</td>
-                        <td>100.00</td>
-                    </tr>
+                    <tbody id="ItemTableBody">
+
                     </tbody>
                 </table>
             </div>
@@ -160,12 +147,21 @@
         <div class="row my-5">
             <div class="col-md-10 position-relative">
                 <div class="p-2 d-grid gap-2 position-absolute top-50 start-50">
-                    <input class="form-control" type="text" placeholder="Item Code" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Item Name" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Item Quantity" aria-label="default input example">
-                    <input class="form-control" type="text" placeholder="Item Price" aria-label="default input example">
-                    <button type="button" class="btn btn-primary btn-sm">Add Item</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Update Item</button>
+                    <input class="form-control" type="text" placeholder="Item Code" aria-label="default input example" id="ItemId">
+                    <p><small id="error1"></small></p>
+
+                    <input class="form-control" type="text" placeholder="Item Name" aria-label="default input example" id="ItemName">
+                    <p><small id="error2"></small></p>
+
+                    <input class="form-control" type="text" placeholder="Item Quantity" aria-label="default input example" id="ItemQuantity">
+                    <p><small id="error3"></small></p>
+
+                    <input class="form-control" type="text" placeholder="Item Price" aria-label="default input example" id="ItemPrice">
+                    <p><small id="error4"></small></p>
+
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSave">Add Item</button>
+
+                    <button type="button" class="btn btn-secondary btn-sm" id="btnUpdate">Update Item</button>
                 </div>
             </div>
         </div>
@@ -340,9 +336,14 @@
             $("#CusAddr").val(CusAddress);
             $("#CusSala").val(CusSalary);
         });
+
+        $("#CustomerTableBody").dblclick(function (){
+            (this).remove();
+        });
+
     });
 
-//    /////////////////////////////////////////////
+//    ////////////////////set customer details to text field/////////////////////////
 
     $("#CustomerTableBody>tr").click(function (){
         let CusID=$(this).children(":eq(0)").text();
@@ -357,35 +358,355 @@
 
     });
 
-////////////////////////////////////////////////////////////
+//////////////////////// set auto focus to next text field////////////////////////////////////
 
-    $("#CusID").keydown(function (focusNextInput){
+    // $("#CusID").keydown(function (focusNextInput){
+    //
+    //     if(focusNextInput.key=="Enter"){
+    //         $("#CusName").focus();
+    //     }
+    // });
 
-        if(focusNextInput.key=="Enter"){
-            $("#CusName").focus();
-        }
+    // $("#CusName").keydown(function (focusNextInput){
+    //
+    //     if(focusNextInput.key=="Enter"){
+    //         $("#CusAddr").focus();
+    //     }
+    // });
+
+    // $("#CusAddr").keydown(function (focusNextInput){
+    //
+    //     if(focusNextInput.key=="Enter"){
+    //         $("#CusSala").focus();
+    //     }
+    // });
+
+    // $("#CusSala").keydown(function (focusNextInput){
+    //
+    //     if(focusNextInput.key=="Enter"){
+    //        alert("Done");
+    //     }
+    // });
+
+
+/////////////////////////remove the customer details from table//////////////////////////////////
+
+    $("#CustomerTableBody").dblclick(function (){
+        $(this).remove();
     });
 
-    $("#CusName").keydown(function (focusNextInput){
 
-        if(focusNextInput.key=="Enter"){
-            $("#CusAddr").focus();
-        }
+//////////////////////////////////////validation and auto focus to next text field////////////////////////////////////////////////////
+
+    var CusIDRegEx =/^(C00-)[0-9]{3,4}$/;
+    var CusNameRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
+    var CusAddressRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
+    var CusSalaryRegEx =/^(?:\d*\.)?\d+$/;
+    $("#save").attr("disabled", true);
+    $("#CusID").keyup(function (){
+
+        let input =$("#CusID").val();
+            if(CusIDRegEx.test(input)){
+                $("#CusID").css('border', '2px solid green');
+                $("#warning").text("Correct Format");
+                $("#warning").css('color','green');
+
+                $("#CusID").keydown(function (focusNextInput){
+
+                    if(focusNextInput.key=="Enter"){
+
+                        $("#CusName").focus();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        $("#CusName").keyup(function (){
+
+                            let input2=$("#CusName").val();
+                            if(CusNameRegEx.test(input2)){
+                                $("#CusName").css('border', '2px solid green');
+                                $("#warning2").text("Correct Format");
+                                $("#warning2").css('color','green');
+
+                                    $("#CusName").keydown(function (focusNextInput){
+
+                                        if(focusNextInput.key=="Enter"){
+                                            $("#CusAddr").focus();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                           $("#CusAddr").keyup(function (){
+
+                                               let input3=$("#CusAddr").val();
+                                               if(CusAddressRegEx.test(input3)){
+                                                   $("#CusAddr").css('border', '2px solid green');
+                                                   $("#warning3").text("Correct Format");
+                                                   $("#warning3").css('color','green');
+
+                                                   $("#CusAddr").keydown(function (focusNextInput){
+
+                                                       if(focusNextInput.key=="Enter"){
+                                                           $("#CusSala").focus();
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                            $("#CusSala").keyup(function (){
+
+                                                                let input4=$("#CusSala").val();
+                                                                if(CusSalaryRegEx.test(input4)){
+                                                                    $("#CusSala").css('border', '2px solid green');
+                                                                    $("#warning4").text("Correct Format");
+                                                                    $("#warning4").css('color','green');
+
+                                                                    $("#save").removeAttr('disabled')
+
+                                                                }else{
+                                                                    $("#CusSala").css('border', '2px solid red');
+                                                                    $("#warning4").text("Entered Wrong Format");
+                                                                    $("#CusSala").focus();
+                                                                    $("#save").attr("disabled", true);
+                                                                }
+
+                                                            });
+
+                                                       }else {
+                                                           $("#CusAddr").focus();
+                                                       }
+                                                   });
+
+
+                                               }else{
+                                                   $("#CusAddr").css('border', '2px solid red');
+                                                   $("#warning3").text("Entered Wrong Format");
+                                                   $("#CusAddr").focus();
+                                                   $("#save").attr("disabled", true);
+                                               }
+
+                                           });
+
+                                        }
+                                        else{
+                                            $("#CusName").focus();
+                                        }
+                                    });
+
+                            }else {
+
+                                $("#CusName").css('border', '2px solid red');
+                                $("#warning2").text("Entered Wrong Format");
+                                $("#CusName").focus();
+                                $("#save").attr("disabled", true);
+                            }
+                        });
+
+                    }else {
+                        $("#CusID").focus();
+                    }
+                });
+
+
+            }else {
+                $("#CusID").css('border', '2px solid red');
+                $("#warning").text("Entered Wrong Format. (C00-001)");
+                $("#CusID").focus();
+                $("#save").attr("disabled", true);
+            }
+
     });
 
-    $("#CusAddr").keydown(function (focusNextInput){
 
-        if(focusNextInput.key=="Enter"){
-            $("#CusSala").focus();
-        }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// ===================================================================================================
+//////////////////////////////////Item Page//////////////////////////////////////////////////////////////
+
+$("#btnSave").click(function (){
+
+    $("#ItemTableBody>tr").off("click");
+
+    // gather item Information
+
+    let ItemID = $("#ItemId").val();
+    let ItemName = $("#ItemName").val();
+    let ItemQuantity =$("#ItemQuantity").val();
+    let ItemPrice =$("#ItemPrice").val();
+
+    let row = `<tr><td>${ItemID}</td><td>${ItemName}</td><td>${ItemQuantity}</td><td>${ItemPrice}</td></tr>`;
+
+
+    $("#ItemTableBody").append(row);
+
+    $("#ItemTableBody>tr").click(function (){
+        let ItemID=$(this).children(":eq(0)").text();
+        let ItemName=$(this).children(":eq(1)").text();
+        let ItemQuantity=$(this).children(":eq(2)").text();
+        let ItemPrice=$(this).children(":eq(3)").text();
+
+        $("#ItemId").val(ItemID);
+        $("#ItemName").val(ItemName);
+        $("#ItemQuantity").val(ItemQuantity);
+        $("#ItemPrice").val(ItemPrice);
     });
 
-    $("#CusSala").keydown(function (focusNextInput){
-
-        if(focusNextInput.key=="Enter"){
-           alert("Done");
-        }
+    $("#ItemTableBody").dblclick(function (){
+        (this).remove();
     });
+
+});
+
+////////////////////////////////remove the Item details from table///////////////////////////////////////////
+
+$("#CustomerTableBody").dblclick(function (){
+    $(this).remove();
+});
+
+//    ////////////////////set Item details to text field/////////////////////////
+
+$("#CustomerTableBody>tr").click(function (){
+    let CusID=$(this).children(":eq(0)").text();
+    let CusName=$(this).children(":eq(1)").text();
+    let CusAddress=$(this).children(":eq(2)").text();
+    let CusSalary=$(this).children(":eq(3)").text();
+
+    $("#CusID").val(CusID);
+    $("#CusName").val(CusName);
+    $("#CusAddr").val(CusAddress);
+    $("#CusSala").val(CusSalary);
+
+});
+
+//////////////////////// set auto focus to next text field////////////////////////////////////
+
+// $("#ItemId").keydown(function (focusNextInput){
+//
+//     if(focusNextInput.key=="Enter"){
+//         $("#ItemName").focus();
+//     }
+// });
+// $("#ItemName").keydown(function (focusNextInput){
+//
+//     if(focusNextInput.key=="Enter"){
+//         $("#ItemQuantity").focus();
+//     }
+// });
+// $("#ItemQuantity").keydown(function (focusNextInput){
+//
+//     if(focusNextInput.key=="Enter"){
+//         $("#ItemPrice").focus();
+//     }
+// });
+// $("#ItemPrice").keydown(function (focusNextInput){
+//
+//     if(focusNextInput.key=="Enter"){
+//         alert("Done");
+//     }
+// });
+
+//////////////////////////////////////validation and auto focus to next text field////////////////////////////////////////////////////
+
+var ItemIDRegEx =/^(I00-)[0-9]{3,4}$/;
+var ItemNameRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
+var ItemQuantityRegEx =/^(?:\d*\.)?\d+$/;
+var ItemPriceRegEx =/^(?:\d*\.)?\d+$/;
+
+$("#ItemId").keyup(function (){
+
+    let text1 =$("#ItemId").val();
+    if(ItemIDRegEx.test(text1)){
+        $("#ItemId").css('border', '2px solid green');
+        $("#error1").text("Correct Format");
+        $("#error1").css('color','green');
+
+        $("#ItemId").keydown(function (focusNextInput){
+
+            if(focusNextInput.key=="Enter"){
+
+                $("#ItemName").focus();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $("#ItemName").keyup(function (){
+
+                    let text2=$("#ItemName").val();
+                    if(ItemNameRegEx.test(text2)){
+                        $("#ItemName").css('border', '2px solid green');
+                        $("#error2").text("Correct Format");
+                        $("#error2").css('color','green');
+
+                        $("#ItemName").keydown(function (focusNextInput){
+
+                            if(focusNextInput.key=="Enter"){
+                                $("#ItemQuantity").focus();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                $("#ItemQuantity").keyup(function (){
+
+                                    let text3=$("#ItemQuantity").val();
+                                    if(ItemQuantityRegEx.test(text3)){
+                                        $("#ItemQuantity").css('border', '2px solid green');
+                                        $("#error3").text("Correct Format");
+                                        $("#error3").css('color','green');
+
+                                        $("#ItemQuantity").keydown(function (focusNextInput){
+
+                                            if(focusNextInput.key=="Enter"){
+                                                $("#ItemPrice").focus();
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                $("#ItemPrice").keyup(function (){
+
+                                                    let text4=$("#ItemPrice").val();
+                                                    if(ItemPriceRegEx.test(text4)){
+                                                        $("#ItemPrice").css('border', '2px solid green');
+                                                        $("#error4").text("Correct Format");
+                                                        $("#error4").css('color','green');
+
+                                                        $("#btnSave").removeAttr('disabled')
+
+                                                    }else{
+                                                        $("#ItemPrice").css('border', '2px solid red');
+                                                        $("#error4").text("Entered Wrong Format");
+                                                        $("#ItemPrice").focus();
+                                                        $("#btnSave").attr("disabled", true);
+                                                    }
+
+                                                });
+
+                                            }else {
+                                                $("#ItemQuantity").focus();
+                                            }
+                                        });
+
+
+                                    }else{
+                                        $("#ItemQuantity").css('border', '2px solid red');
+                                        $("#error3").text("Entered Wrong Format");
+                                        $("#ItemQuantity").focus();
+                                        $("#btnSave").attr("disabled", true);
+                                    }
+
+                                });
+
+                            }
+                            else{
+                                $("#ItemName").focus();
+                            }
+                        });
+
+                    }else {
+
+                        $("#ItemName").css('border', '2px solid red');
+                        $("#error2").text("Entered Wrong Format");
+                        $("#ItemName").focus();
+                        $("#btnSave").attr("disabled", true);
+                    }
+                });
+
+            }else {
+                $("#ItemId").focus();
+            }
+        });
+
+
+    }else {
+        $("#ItemId").css('border', '2px solid red');
+        $("#error1").text("Entered Wrong Format. (I00-001)");
+        $("#ItemId").focus();
+        $("#btnSave").attr("disabled", true);
+    }
+
+});
 
 
 

@@ -62,6 +62,7 @@ $("#itemCodeO").keydown(function (searchItem){
 let ItemTempTotal=0;
 let ItemSubTempTotal=0;
 
+$("#billTotalO").text("0000");
 $("#AddToCrtO").click(function (){
     let TotalValueOfItem=$("#priceItemO").val()*$("#quantityForSaleItemO").val();
     ItemTempTotal=ItemTempTotal+TotalValueOfItem;
@@ -201,4 +202,102 @@ $("#DateFixO").keyup(function (){
 
 });
 
+var CusIDRegEx =/^(C00-)[0-9]{3,4}$/;
+var ItemIDRegEx =/^(I00-)[0-9]{3,4}$/;
+
+$("#CustIDO").keyup(function (){
+
+    let text1 =$("#CustIDO").val();
+    if(CusIDRegEx.test(text1)){
+        $("#CustIDO").css('border', '2px solid green');
+
+        $("#CustIDO").keydown(function (focusNextInput){
+
+            if(focusNextInput.key=="Enter"){
+
+                $("#itemCodeO").focus();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $("#itemCodeO").keyup(function (){
+
+                    let text2=$("#itemCodeO").val();
+                    if(ItemIDRegEx.test(text2)){
+                        $("#itemCodeO").css('border', '2px solid green');
+                    }else {
+
+                        $("#itemCodeO").css('border', '2px solid red');
+                        $("#itemCodeO").focus();
+                    }
+                });
+
+            }else {
+                $("#CustIDO").focus();
+            }
+        });
+
+
+    }else {
+        $("#CustIDO").css('border', '2px solid red');
+        $("#CustIDO").focus();
+    }
+
+});
+
 //////////////////////////////////////////
+
+var QuantityRegEx=/^[1-9]{1,10}$/;
+
+$("#quantityForSaleItemO").keyup(function (){
+
+    var input1=$("#quantityForSaleItemO").val();
+        if (QuantityRegEx.test(input1)){
+            $("#quantityForSaleItemO").css('border','2px solid green');
+            $("#AddToCrtO").attr("disabled",false);
+        }else{
+            $("#quantityForSaleItemO").css('border','2px solid red');
+                $("#quantityForSaleItemO").focus();
+                alert("Wrong Format !")
+            $("#AddToCrtO").attr("disabled",true);
+
+        }
+
+        if ($("#quantityForSaleItemO").val()==''){
+            $("#quantityForSaleItemO").css('border','2px solid red');
+            $("#quantityForSaleItemO").focus();
+            alert("Empty fields !")
+            $("#AddToCrtO").attr("disabled",true);
+
+            return;
+        }
+
+        if($("#quantityForSaleItemO").val()>$("#quantityItemO").val()){
+            $("#quantityForSaleItemO").css('border','2px solid red');
+            $("#quantityForSaleItemO").focus();
+            alert("you don't have this much stock balance !.. ");
+            $("#AddToCrtO").attr("disabled",true);
+            return;
+        }
+
+});
+
+/////////////////////////////////////////
+var regDis=/^[0-9]{1,2}|(.)[0-9]{1,2}$/;
+$("#discountO").keyup(function (){
+    let input2=$("#discountO").val();
+    if (regDis.test(input2)){
+        $("#discountO").css('border','2px solid green');
+        let dis=100-$("#discountO").val();
+        let subT=ItemTempTotal*(dis/100);
+
+        ItemSubTempTotal=subT;
+        $("#finalTotalO").text(subT+" /=");
+
+        let bal=$("#reCashO").val()-subT;
+        $("#BalanceForCusO").val(bal);
+    }else {
+        $("#discountO").css('border','2px solid red');
+        $("#discountO").focus();
+
+    }
+});
+///////////////////////////////////////

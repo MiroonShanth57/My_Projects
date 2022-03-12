@@ -9,6 +9,7 @@
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link href="assets/pos.css" rel="stylesheet">
 
+
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -78,8 +79,8 @@
 
             <div class="col-md">
                 <form class="d-flex m-5">
-                    <input class="form-control me-2" type="search" placeholder="Search (ID/Name)" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search (ID/Name)" aria-label="Search" id="searchInputCus">
+                    <button class="btn btn-outline-success" type="submit" id="btnSearch">Search</button>
                 </form>
             </div>
         </div>
@@ -280,240 +281,326 @@
 </section>
 
 <script src="assets/JQuery/jquery-3.6.0.min.js"></script>
+<!--DataBase (Array)-->
+<script src="db/DataBase.js"></script>
+<!--Controller-->
+<script src="Controller/CustomerController.js"></script>
+<script src="Controller/ItemController.js"></script>
+<script src="Controller/OrderController.js"></script>
+<script src="Controller/ControllerForAllFile.js"></script>
+<!--Modal-->
+<script src="Model/CustomerModel.js"></script>
+<script src="Model/ItemModel.js"></script>
+<script src="Model/OrderModel.js"></script>
+
+
+
 <script>
 
 
-<!--    non-->
-    document.getElementById("ItemPage").style.display="none";
-    document.getElementById("OrderPage").style.display="none";
-    //------------------------------------1st btn
-    document.getElementById("HomeBtn").addEventListener("click",function () {
-        document.getElementById("ItemPage").style.display="none";
-        document.getElementById("OrderPage").style.display="none";
-        document.getElementById("CustomerPage").style.display="block";
-    });
-    //--------------------------------------2nd btn
-    document.getElementById("ItemBtn").addEventListener("click",function () {
-        document.getElementById("ItemPage").style.display="block";
-        document.getElementById("OrderPage").style.display="none";
-        document.getElementById("CustomerPage").style.display="none";
-    });
-    // -------------------------------------3rd btn
-    document.getElementById("OrderBtn").addEventListener("click",function () {
-        document.getElementById("ItemPage").style.display="none";
-        document.getElementById("OrderPage").style.display="block";
-        document.getElementById("CustomerPage").style.display="none";
-    });
-
-// --------------------------- add customer to table -----------------------------------------
-
-
-
-    $("#save").click(function (){
-
-        $("#CustomerTableBody>tr").off("click");
-
-        // gather Cus Information
-
-        let cusID = $("#CusID").val();
-        let cusName = $("#CusName").val();
-        let cusAddress =$("#CusAddr").val();
-        let cusSalary =$("#CusSala").val();
-
-        let row = `<tr><td>${cusID}</td><td>${cusName}</td><td>${cusAddress}</td><td>${cusSalary}</td></tr>`;
-
-
-        $("#CustomerTableBody").append(row);
-
-        $("#CustomerTableBody>tr").click(function (){
-            let CusID=$(this).children(":eq(0)").text();
-            let CusName=$(this).children(":eq(1)").text();
-            let CusAddress=$(this).children(":eq(2)").text();
-            let CusSalary=$(this).children(":eq(3)").text();
-
-            $("#CusID").val(CusID);
-            $("#CusName").val(CusName);
-            $("#CusAddr").val(CusAddress);
-            $("#CusSala").val(CusSalary);
-        });
-
-        $("#CustomerTableBody").dblclick(function (){
-            (this).remove();
-        });
-
-    });
-
-//    ////////////////////set customer details to text field/////////////////////////
-
-    $("#CustomerTableBody>tr").click(function (){
-        let CusID=$(this).children(":eq(0)").text();
-        let CusName=$(this).children(":eq(1)").text();
-        let CusAddress=$(this).children(":eq(2)").text();
-        let CusSalary=$(this).children(":eq(3)").text();
-
-        $("#CusID").val(CusID);
-        $("#CusName").val(CusName);
-        $("#CusAddr").val(CusAddress);
-        $("#CusSala").val(CusSalary);
-
-    });
-
-//////////////////////// set auto focus to next text field////////////////////////////////////
-
-    // $("#CusID").keydown(function (focusNextInput){
-    //
-    //     if(focusNextInput.key=="Enter"){
-    //         $("#CusName").focus();
-    //     }
-    // });
-
-    // $("#CusName").keydown(function (focusNextInput){
-    //
-    //     if(focusNextInput.key=="Enter"){
-    //         $("#CusAddr").focus();
-    //     }
-    // });
-
-    // $("#CusAddr").keydown(function (focusNextInput){
-    //
-    //     if(focusNextInput.key=="Enter"){
-    //         $("#CusSala").focus();
-    //     }
-    // });
-
-    // $("#CusSala").keydown(function (focusNextInput){
-    //
-    //     if(focusNextInput.key=="Enter"){
-    //        alert("Done");
-    //     }
-    // });
-
-
-/////////////////////////remove the customer details from table//////////////////////////////////
-
-    $("#CustomerTableBody").dblclick(function (){
-        $(this).remove();
-    });
-
-
-//////////////////////////////////////validation and auto focus to next text field////////////////////////////////////////////////////
-
-    var CusIDRegEx =/^(C00-)[0-9]{3,4}$/;
-    var CusNameRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
-    var CusAddressRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
-    var CusSalaryRegEx =/^(?:\d*\.)?\d+$/;
-    $("#save").attr("disabled", true);
-    $("#CusID").keyup(function (){
-
-        let input =$("#CusID").val();
-            if(CusIDRegEx.test(input)){
-                $("#CusID").css('border', '2px solid green');
-                $("#warning").text("Correct Format");
-                $("#warning").css('color','green');
-
-                $("#CusID").keydown(function (focusNextInput){
-
-                    if(focusNextInput.key=="Enter"){
-
-                        $("#CusName").focus();
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        $("#CusName").keyup(function (){
-
-                            let input2=$("#CusName").val();
-                            if(CusNameRegEx.test(input2)){
-                                $("#CusName").css('border', '2px solid green');
-                                $("#warning2").text("Correct Format");
-                                $("#warning2").css('color','green');
-
-                                    $("#CusName").keydown(function (focusNextInput){
-
-                                        if(focusNextInput.key=="Enter"){
-                                            $("#CusAddr").focus();
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                           $("#CusAddr").keyup(function (){
-
-                                               let input3=$("#CusAddr").val();
-                                               if(CusAddressRegEx.test(input3)){
-                                                   $("#CusAddr").css('border', '2px solid green');
-                                                   $("#warning3").text("Correct Format");
-                                                   $("#warning3").css('color','green');
-
-                                                   $("#CusAddr").keydown(function (focusNextInput){
-
-                                                       if(focusNextInput.key=="Enter"){
-                                                           $("#CusSala").focus();
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                            $("#CusSala").keyup(function (){
-
-                                                                let input4=$("#CusSala").val();
-                                                                if(CusSalaryRegEx.test(input4)){
-                                                                    $("#CusSala").css('border', '2px solid green');
-                                                                    $("#warning4").text("Correct Format");
-                                                                    $("#warning4").css('color','green');
-
-                                                                    $("#save").removeAttr('disabled')
-
-                                                                }else{
-                                                                    $("#CusSala").css('border', '2px solid red');
-                                                                    $("#warning4").text("Entered Wrong Format");
-                                                                    $("#CusSala").focus();
-                                                                    $("#save").attr("disabled", true);
-                                                                }
-
-                                                            });
-
-                                                       }else {
-                                                           $("#CusAddr").focus();
-                                                       }
-                                                   });
-
-
-                                               }else{
-                                                   $("#CusAddr").css('border', '2px solid red');
-                                                   $("#warning3").text("Entered Wrong Format");
-                                                   $("#CusAddr").focus();
-                                                   $("#save").attr("disabled", true);
-                                               }
-
-                                           });
-
-                                        }
-                                        else{
-                                            $("#CusName").focus();
-                                        }
-                                    });
-
-                            }else {
-
-                                $("#CusName").css('border', '2px solid red');
-                                $("#warning2").text("Entered Wrong Format");
-                                $("#CusName").focus();
-                                $("#save").attr("disabled", true);
-                            }
-                        });
-
-                    }else {
-                        $("#CusID").focus();
-                    }
-                });
-
-
-            }else {
-                $("#CusID").css('border', '2px solid red');
-                $("#warning").text("Entered Wrong Format. (C00-001)");
-                $("#CusID").focus();
-                $("#save").attr("disabled", true);
-            }
-
-    });
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-// ===================================================================================================
-//////////////////////////////////Item Page//////////////////////////////////////////////////////////////
-
+// <!--    non-->
+//     document.getElementById("ItemPage").style.display="none";
+//     document.getElementById("OrderPage").style.display="none";
+//     //------------------------------------1st btn
+//     document.getElementById("HomeBtn").addEventListener("click",function () {
+//         document.getElementById("ItemPage").style.display="none";
+//         document.getElementById("OrderPage").style.display="none";
+//         document.getElementById("CustomerPage").style.display="block";
+//     });
+//     //--------------------------------------2nd btn
+//     document.getElementById("ItemBtn").addEventListener("click",function () {
+//         document.getElementById("ItemPage").style.display="block";
+//         document.getElementById("OrderPage").style.display="none";
+//         document.getElementById("CustomerPage").style.display="none";
+//     });
+//     // -------------------------------------3rd btn
+//     document.getElementById("OrderBtn").addEventListener("click",function () {
+//         document.getElementById("ItemPage").style.display="none";
+//         document.getElementById("OrderPage").style.display="block";
+//         document.getElementById("CustomerPage").style.display="none";
+//     });
+//
+//
+//     $('#CusID,#CusName,#CusAddr,#CusSala,#ItemId,#ItemName,#ItemQuantity,#ItemPrice').on('keydown',function (eventOb){
+//         if(eventOb.key=="Tab"){
+//             eventOb.preventDefault();
+//         }
+//     });
+//
+//
+//
+//     LoadAllCustomer();
+// // --------------------------- add customer to table -----------------------------------------
+//
+//
+//         $("#save").click(function (){
+//
+//
+//
+//             $("#CustomerTableBody>tr").off("click");
+//
+//             // gather Cus Information
+//
+//             let cusID = $("#CusID").val();
+//             let cusName = $("#CusName").val();
+//             let cusAddress =$("#CusAddr").val();
+//             let cusSalary =$("#CusSala").val();
+//
+//             ///////////////////////////////create obj//////////////////////////////////////////////
+//
+//             var CustomerObject={
+//                 id:cusID,
+//                 name:cusName,
+//                 address:cusAddress,
+//                 salary:cusSalary
+//             };
+//
+//             customerDB.push(CustomerObject);
+//
+//
+//             LoadAllCustomer();
+//             /////////////////////////////////////////////////////////////////////////////
+//
+//
+//             // let row = `<tr><td>${cusID}</td><td>${cusName}</td><td>${cusAddress}</td><td>${cusSalary}</td></tr>`;
+//             //
+//             //
+//             // $("#CustomerTableBody").append(row);
+//
+//             $("#CustomerTableBody>tr").click(function (){
+//                 let CusID=$(this).children(":eq(0)").text();
+//                 let CusName=$(this).children(":eq(1)").text();
+//                 let CusAddress=$(this).children(":eq(2)").text();
+//                 let CusSalary=$(this).children(":eq(3)").text();
+//
+//                 $("#CusID").val(CusID);
+//                 $("#CusName").val(CusName);
+//                 $("#CusAddr").val(CusAddress);
+//                 $("#CusSala").val(CusSalary);
+//             });
+//
+//             $("#CustomerTableBody").dblclick(function (){
+//                 (this).remove();
+//             });
+//
+//         });
+//
+// //////////////////////////Load All Customer to table from array //Function////////////////////////////////////
+//
+//     function LoadAllCustomer(){
+//         $("#CustomerTableBody").empty();
+//         for(var i in customerDB){
+//             customerDB[i].id
+//
+//             let row = `<tr><td>${customerDB[i].id}</td><td>${customerDB[i].name}</td><td>${customerDB[i].address}</td><td>${customerDB[i].salary}</td></tr>`;
+//             $("#CustomerTableBody").append(row);
+//         }
+//
+//     };
+//
+//     ///////////////////////////////////////btnSearch/////////////////////////////////////////////////
+//
+//     $("#btnSearch").click(function (){
+//
+//         var tempID= $("#searchInputCus").val();
+//         var out=SearchCusID(tempID);
+//
+//         if(out){
+//             $("#CusID").val(out.id);
+//             $("#CusName").val(out.name);
+//             $("#CusAddr").val(out.address);
+//             $("#CusSala").val(out.salary);
+//         }else {
+//             alert("Customer not found");
+//         }
+//
+//
+//
+//
+//     });
+//
+//     function SearchCusID(id){
+//         for (let i = 0; i < customerDB.length; i++) {
+//             if (customerDB[i].id==id){
+//                 return customerDB[i];
+//             }
+//         }
+//     };
+//
+//
+// ///////////////////////////////////////////////////////////////////////////////////////
+//
+// //    ////////////////////set customer details to text field/////////////////////////
+//
+//     $("#CustomerTableBody>tr").click(function (){
+//         let CusID=$(this).children(":eq(0)").text();
+//         let CusName=$(this).children(":eq(1)").text();
+//         let CusAddress=$(this).children(":eq(2)").text();
+//         let CusSalary=$(this).children(":eq(3)").text();
+//
+//         $("#CusID").val(CusID);
+//         $("#CusName").val(CusName);
+//         $("#CusAddr").val(CusAddress);
+//         $("#CusSala").val(CusSalary);
+//
+//     });
+//
+// //////////////////////// set auto focus to next text field////////////////////////////////////
+//
+//     // $("#CusID").keydown(function (focusNextInput){
+//     //
+//     //     if(focusNextInput.key=="Enter"){
+//     //         $("#CusName").focus();
+//     //     }
+//     // });
+//
+//     // $("#CusName").keydown(function (focusNextInput){
+//     //
+//     //     if(focusNextInput.key=="Enter"){
+//     //         $("#CusAddr").focus();
+//     //     }
+//     // });
+//
+//     // $("#CusAddr").keydown(function (focusNextInput){
+//     //
+//     //     if(focusNextInput.key=="Enter"){
+//     //         $("#CusSala").focus();
+//     //     }
+//     // });
+//
+//     // $("#CusSala").keydown(function (focusNextInput){
+//     //
+//     //     if(focusNextInput.key=="Enter"){
+//     //        alert("Done");
+//     //     }
+//     // });
+//
+//
+// /////////////////////////remove the customer details from table//////////////////////////////////
+//
+//     $("#CustomerTableBody").dblclick(function (){
+//         $(this).remove();
+//     });
+//
+//
+// //////////////////////////////////////validation and auto focus to next text field////////////////////////////////////////////////////
+//
+//     var CusIDRegEx =/^(C00-)[0-9]{3,4}$/;
+//     var CusNameRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
+//     var CusAddressRegEx =/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)$/;
+//     var CusSalaryRegEx =/^(?:\d*\.)?\d+$/;
+//     $("#save").attr("disabled", true);
+//     $("#CusID").keyup(function (){
+//
+//         let input =$("#CusID").val();
+//             if(CusIDRegEx.test(input)){
+//                 $("#CusID").css('border', '2px solid green');
+//                 $("#warning").text("Correct Format");
+//                 $("#warning").css('color','green');
+//
+//                 $("#CusID").keydown(function (focusNextInput){
+//
+//                     if(focusNextInput.key=="Enter"){
+//
+//                         $("#CusName").focus();
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                         $("#CusName").keyup(function (){
+//
+//                             let input2=$("#CusName").val();
+//                             if(CusNameRegEx.test(input2)){
+//                                 $("#CusName").css('border', '2px solid green');
+//                                 $("#warning2").text("Correct Format");
+//                                 $("#warning2").css('color','green');
+//
+//                                     $("#CusName").keydown(function (focusNextInput){
+//
+//                                         if(focusNextInput.key=="Enter"){
+//                                             $("#CusAddr").focus();
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                            $("#CusAddr").keyup(function (){
+//
+//                                                let input3=$("#CusAddr").val();
+//                                                if(CusAddressRegEx.test(input3)){
+//                                                    $("#CusAddr").css('border', '2px solid green');
+//                                                    $("#warning3").text("Correct Format");
+//                                                    $("#warning3").css('color','green');
+//
+//                                                    $("#CusAddr").keydown(function (focusNextInput){
+//
+//                                                        if(focusNextInput.key=="Enter"){
+//                                                            $("#CusSala").focus();
+// /////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                             $("#CusSala").keyup(function (){
+//
+//                                                                 let input4=$("#CusSala").val();
+//                                                                 if(CusSalaryRegEx.test(input4)){
+//                                                                     $("#CusSala").css('border', '2px solid green');
+//                                                                     $("#warning4").text("Correct Format");
+//                                                                     $("#warning4").css('color','green');
+//
+//                                                                     $("#save").removeAttr('disabled')
+//
+//                                                                 }else{
+//                                                                     $("#CusSala").css('border', '2px solid red');
+//                                                                     $("#warning4").text("Entered Wrong Format");
+//                                                                     $("#CusSala").focus();
+//                                                                     $("#save").attr("disabled", true);
+//                                                                 }
+//
+//                                                             });
+//
+//                                                        }else {
+//                                                            $("#CusAddr").focus();
+//                                                        }
+//                                                    });
+//
+//
+//                                                }else{
+//                                                    $("#CusAddr").css('border', '2px solid red');
+//                                                    $("#warning3").text("Entered Wrong Format");
+//                                                    $("#CusAddr").focus();
+//                                                    $("#save").attr("disabled", true);
+//                                                }
+//
+//                                            });
+//
+//                                         }
+//                                         else{
+//                                             $("#CusName").focus();
+//                                         }
+//                                     });
+//
+//                             }else {
+//
+//                                 $("#CusName").css('border', '2px solid red');
+//                                 $("#warning2").text("Entered Wrong Format");
+//                                 $("#CusName").focus();
+//                                 $("#save").attr("disabled", true);
+//                             }
+//                         });
+//
+//                     }else {
+//                         $("#CusID").focus();
+//                     }
+//                 });
+//
+//
+//             }else {
+//                 $("#CusID").css('border', '2px solid red');
+//                 $("#warning").text("Entered Wrong Format. (C00-001)");
+//                 $("#CusID").focus();
+//                 $("#save").attr("disabled", true);
+//             }
+//
+//     });
+//
+//
+//
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////
+// // ===================================================================================================
+// //////////////////////////////////Item Page//////////////////////////////////////////////////////////////
+//
 $("#btnSave").click(function (){
 
     $("#ItemTableBody>tr").off("click");

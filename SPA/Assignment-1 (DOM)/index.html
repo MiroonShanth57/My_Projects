@@ -182,98 +182,77 @@
                 <h5>Customer & Item Details</h5>
             </div>
             <div class="col-md-9 d-flex flex-row bd-highlight mb-3 justify-content-between gap-2 ">
-                <input class="form-control form-control-sm" type="text" placeholder="Customer ID" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Address" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Salary" aria-label=".form-control-sm example">
-                <button type="button" class="btn btn-success btn-sm">Done</button>
+                <input class="form-control form-control-sm" type="text" placeholder="Customer ID" aria-label=".form-control-sm example" id="CustIDO">
+                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example" id="CustNameO">
+                <input class="form-control form-control-sm" type="text" placeholder="Address" aria-label=".form-control-sm example" id="CustAddreO">
+                <input class="form-control form-control-sm" type="text" placeholder="Salary" aria-label=".form-control-sm example" id="CustSalaO">
+                <button type="button" class="btn btn-success btn-sm" id="SelectCusO">Done</button>
             </div>
         </div>
 
         <div class="row my-3">
             <div class="col-md p-2 d-grid gap-2">
-                <input class="form-control form-control-sm" type="text" placeholder="Item Code" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Quantity On Hand" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Price" aria-label=".form-control-sm example">
-                <input class="form-control form-control-sm" type="text" placeholder="Quantity for sale" aria-label=".form-control-sm example">
-                <button type="button" class="btn btn-success btn-sm">Add to Card..</button>
+                <input class="form-control form-control-sm" type="text" placeholder="Item Code" aria-label=".form-control-sm example" id="itemCodeO">
+                <input class="form-control form-control-sm" type="text" placeholder="Name" aria-label=".form-control-sm example" id="nameItemO">
+                <input class="form-control form-control-sm" type="text" placeholder="Quantity On Hand" aria-label=".form-control-sm example" id="quantityItemO">
+                <input class="form-control form-control-sm" type="text" placeholder="Price" aria-label=".form-control-sm example" id="priceItemO">
+                <input class="form-control form-control-sm" type="text" placeholder="Quantity for sale" aria-label=".form-control-sm example" id="quantityForSaleItemO">
+                <button type="button" class="btn btn-success btn-sm" id="AddToCrtO">Add to Card..</button>
             </div>
 
             <div class="col-md-7">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Order Time & Date</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="00.00.00 am/pm  00/00/00">
+                    <label  class="form-label">Order Time & Date</label>
+                    <input type="text" class="form-control" id="DateFixO" placeholder="2000/11/19">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Order ID</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="O-0001">
+                    <label  class="form-label">Order ID</label>
+                    <input type="text" class="form-control" id="OrderIdFixO" placeholder="O-0001">
                 </div>
 
                 <table class="table table-sm table-hover table-responsive caption-top">
                     <caption>Customer Card</caption>
                     <thead class="table-dark">
                     <tr>
-                        <th scope="col">No</th>
                         <th scope="col">Item Code</th>
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>I-001</td>
-                        <td>fogg</td>
-                        <td>5</td>
-                        <td>500.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>I-001</td>
-                        <td>fogg</td>
-                        <td>5</td>
-                        <td>500.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>I-001</td>
-                        <td>fogg</td>
-                        <td>5</td>
-                        <td>500.00</td>
-                    </tr>
+                    <tbody id="CustomerFinalTableO">
+
                     </tbody>
                 </table>
             </div>
 
             <div class="col-md">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Total</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="000.00">
+                    <label  class="form-label">Total</label>
+                    <input type="text" class="form-control" id="billTotalO" placeholder="000.00">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Discount</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="30%">
+                    <label  class="form-label">Discount</label>
+                    <input type="text" class="form-control" id="discountO" placeholder="30%">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Sub Total</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="000.00">
+                    <label  class="form-label">Sub Total</label>
+                    <input type="text" class="form-control" id="finalTotalO" placeholder="000.00">
                 </div>
 
-                <button type="button" class="btn btn-success btn-sm">Done</button>
+                <button type="button" class="btn btn-success btn-sm" id="CalcFinalAmountO">Done</button>
 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Cash</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput6" placeholder="000.00">
+                    <label  class="form-label">Cash</label>
+                    <input type="text" class="form-control" id="reCashO" placeholder="000.00">
                 </div>
 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Balance</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput7" placeholder="000.00">
+                    <label class="form-label">Balance</label>
+                    <input type="text" class="form-control" id="BalanceForCusO" placeholder="000.00">
                 </div>
 
-                <button type="button" class="btn btn-sm btn-success">Finished</button>
+                <button type="button" class="btn btn-sm btn-success" id="finalOrderO">Finished</button>
             </div>
 
         </div>

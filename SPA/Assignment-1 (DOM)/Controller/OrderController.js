@@ -83,26 +83,122 @@ $("#AddToCrtO").click(function (){
         return;
     }
     /////////////////////////////////////////////////////////////////
+
+    $("#billTotalO").text(ItemTempTotal + "/=");
 });
 
-////////////////////////reduce item///////////////////////////////////
+//////////////////////////////finalOrder/////////////////////////
+$("#finalOrderO").click(function (){
+    if($("#OrderIdFixO").val()!=''&&$("#DateFixO").val()!=''&&$("#CustIDO").val()!=''&&$("#itemCodeO").val()!=''&&
+        $("#reCashO").val()!=''){
 
-// function (){
-//
-// }
+        let OID=$("#OrderIdFixO").val();
+        let ODate=$("#DateFixO").val();
+        let OCusId=$("#CustIDO").val();
+        let OPrice=ItemSubTempTotal;
+
+    //    ///////order id check/////
+        if (OrderIDCheck(OID)){
+            alert(OID +" This Order ID Has Already Taken !")
+        }
+
+        if(confirm("confirm this order?")){
+
+            let Oder=new FinalOreder(OID,ODate,OCusId,OPrice);
+            orderDB.push(Oder);
+            ClearTextField();
+        }else {
+            alert("Order Canceled for some reason")
+        }
+
+    }else {
+        alert("try again...");
+        return;
+    }
+});
 
 ////////////////////////////////////////////////////////////////
 
+//////////////////////Oder ID Checking //////////////////////////
+function OrderIDCheck(id){
+    for (let i = 0; i < orderDB.length; i++) {
+       if (orderDB[i].getOrderID()==id){
+           return true;
+       }else {
+           return false;
+       }
+    }
+}
+
+////////////////////////////////////////////////////////////////
+
+///////////clear All fields for new order///////////////////////
+function ClearTextField(){
+    $("#OrderIdFixO").val('');
+    $("#DateFixO").val('');
+
+    $("#itemCodeO").val('');
+    $("#nameItemO").val('');
+    $("#quantityItemO").val('');
+    $("#quantityForSaleItemO").val('');
+    $("#priceItemO").val('');
+
+    $("#billTotalO").val('');
+    $("#finalOrderO").val('');
+    $("#discountO").val('');
+    $("#reCashO").val('');
+    $("#BalanceForCusO").val('');
+
+    $("#CustIDO").val('');
+    $("#CustNameO").val('');
+    $("#CustAddreO").val('');
+    $("#CusSala").val('');
+
+    $("#CustomerFinalTableO>tr").remove();
+}
+////////////////////////////////////////////////////////////////
+
+///////////////////Date Input Validation///////////////////////
+
+var regExDate=/^\d{2}\/\d{2}\/\d{4}$/;
+var OrderIDRegEx =/^(OID-)[0-9]{3,4}$/;
+
+$("#DateFixO").keyup(function (){
+
+    let text1 =$("#DateFixO").val();
+    if(regExDate.test(text1)){
+        $("#DateFixO").css('border', '2px solid green');
+
+        $("#DateFixO").keydown(function (focusNextInput){
+
+            if(focusNextInput.key=="Enter"){
+
+                $("#OrderIdFixO").focus();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $("#OrderIdFixO").keyup(function (){
+
+                    let text2=$("#OrderIdFixO").val();
+                    if(OrderIDRegEx.test(text2)){
+                        $("#OrderIdFixO").css('border', '2px solid green');
+                    }else {
+
+                        $("#OrderIdFixO").css('border', '2px solid red');
+                        $("#OrderIdFixO").focus();
+                    }
+                });
+
+            }else {
+                $("#DateFixO").focus();
+            }
+        });
 
 
+    }else {
+        $("#DateFixO").css('border', '2px solid red');
+        $("#DateFixO").focus();
+    }
 
-
-
-
-
-
-
-
-
+});
 
 //////////////////////////////////////////

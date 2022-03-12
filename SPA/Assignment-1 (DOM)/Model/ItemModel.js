@@ -38,7 +38,7 @@ function Item(ICode,IName,IHQuantity,IPrice){
         return __ItemPrice;
     }
 
-    this.setItemQuantity=function (IPrice){
+    this.setItemPrice=function (IPrice){
         __ItemPrice=IPrice;
     }
 

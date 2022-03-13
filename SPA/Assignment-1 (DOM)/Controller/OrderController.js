@@ -4,7 +4,7 @@ function SearchCustomer(id){
         if (customerDB[i].getCustomerID()==id){
             $("#CustNameO").val(customerDB[i].getCustomerName());
             $("#CustAddreO").val(customerDB[i].getCustomerAddress());
-            $("#CustSalaO").val(customerDB[i].getCustomerName());
+            $("#CustSalaO").val(customerDB[i].getCustomerSalary());
 
             return;
         }
@@ -62,10 +62,11 @@ $("#itemCodeO").keydown(function (searchItem){
 let ItemTempTotal=0;
 let ItemSubTempTotal=0;
 
-$("#billTotalO").text("0000");
 $("#AddToCrtO").click(function (){
     let TotalValueOfItem=$("#priceItemO").val()*$("#quantityForSaleItemO").val();
     ItemTempTotal=ItemTempTotal+TotalValueOfItem;
+    $("#billTotalO").val(ItemTempTotal + "/=");
+
 
     let row=`<tr><td>${$("#itemCodeO").val()}</td><td>${$("#nameItemO").val()}</td><td>${$("#quantityForSaleItemO").val()}</td><td>${TotalValueOfItem}</td></tr>`;
     $("#CustomerFinalTableO").append(row)
@@ -85,7 +86,10 @@ $("#AddToCrtO").click(function (){
     }
     /////////////////////////////////////////////////////////////////
 
-    $("#billTotalO").text(ItemTempTotal + "/=");
+    $("#CardValue").val(ItemTempTotal + "rs Only");
+
+    $("#billTotalO").val(ItemTempTotal + "/=");
+
 });
 
 //////////////////////////////finalOrder/////////////////////////
@@ -149,6 +153,7 @@ function ClearTextField(){
     $("#discountO").val('');
     $("#reCashO").val('');
     $("#BalanceForCusO").val('');
+    $("#finalTotalO").val('')
 
     $("#CustIDO").val('');
     $("#CustNameO").val('');
@@ -156,6 +161,8 @@ function ClearTextField(){
     $("#CusSala").val('');
 
     $("#CustomerFinalTableO>tr").remove();
+
+    $("#CardValue").val('');
 }
 ////////////////////////////////////////////////////////////////
 
@@ -245,7 +252,7 @@ $("#CustIDO").keyup(function (){
 
 //////////////////////////////////////////
 
-var QuantityRegEx=/^[1-9]{1,10}$/;
+var QuantityRegEx=/^[1-100]{1,10}$/;
 
 $("#quantityForSaleItemO").keyup(function (){
 
@@ -276,6 +283,9 @@ $("#quantityForSaleItemO").keyup(function (){
             alert("you don't have this much stock balance !.. ");
             $("#AddToCrtO").attr("disabled",true);
             return;
+        }else {
+            $("#quantityForSaleItemO").css('border','2px solid green');
+            $("#AddToCrtO").attr("disabled",false);
         }
 
 });
@@ -286,14 +296,20 @@ $("#discountO").keyup(function (){
     let input2=$("#discountO").val();
     if (regDis.test(input2)){
         $("#discountO").css('border','2px solid green');
-        let dis=100-$("#discountO").val();
+        let dis=$("#discountO").val();
         let subT=ItemTempTotal*(dis/100);
 
-        ItemSubTempTotal=subT;
-        $("#finalTotalO").text(subT+" /=");
+        ItemSubTempTotal=ItemTempTotal-subT;
 
-        let bal=$("#reCashO").val()-subT;
-        $("#BalanceForCusO").val(bal);
+        $("#finalTotalO").val(ItemSubTempTotal+" /=");
+        // $("#reCashO").focus();
+
+        $("#CalcFinalAmountO").click(function (){
+    let bal=$("#reCashO").val()-ItemSubTempTotal;
+    $("#BalanceForCusO").val(bal);
+
+
+});
     }else {
         $("#discountO").css('border','2px solid red');
         $("#discountO").focus();
@@ -301,3 +317,7 @@ $("#discountO").keyup(function (){
     }
 });
 ///////////////////////////////////////
+
+$("#SelectCusO").click(function (){
+    ClearTextField();
+});
